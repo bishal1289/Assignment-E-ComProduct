@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product</title>
+    <style>
+      #mainDiv {
+        display: flex;
+        gap: 20px;
+      }
+      #main {
+        margin-top: 100px;
+        margin-left: 60px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+      }
+      #more {
+        margin: 100px;
+      }
+      
+    </style>
+  </head>
+  <body>
+    
+      <div id="mainDiv">
+        <a href="./login.html" id="login">Login</a>
+        <a href="./signup.html" id="signup">Signup</a>
+        <a href="./product.html" id="product">Product</a>
+        <a href="./Cart.html">Cart</a>
+        <button onclick="logout()" id="logout">Logout</button>
+        
+      </div>
+
+      <div id="main"></div>
+    
+    <button id="more">More</button>
+    <script src="./index.js"></script>
+  </body>
+</html>
