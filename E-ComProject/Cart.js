@@ -12,19 +12,27 @@ let netTotalPrice = 0;
 let netPrice = 0;
 
 //** When window load calculate total and Nettotal and display **/
-
-  cartItem.forEach((ele) => {
-    ele.total = ele.price * ele.qty;
-    netPrice += parseInt(ele.total);
-  })
-  localStorage.setItem("cart", JSON.stringify(cartItem));
-  netTotal.innerHTML = `<b>Net Amount : ${netPrice}</b>`;
-
-  
+let arr = cartItem.filter((ele) => {
+  if (ele.email == loged.email) {
+    return true;
+  }
+});
+arr.forEach((ele) => {
+  ele.total = ele.price * ele.qty;
+  netPrice += parseInt(ele.total);
+});
+localStorage.setItem("cart", JSON.stringify(cartItem));
+netTotal.innerHTML = `<b>Net Amount : ${netPrice}</b>`;
 
 //** To clear all cart items **//
+
 function clearAll() {
-  localStorage.removeItem("cart");
+  let remainingItems = cartItem.filter((obj) => {
+    if (obj.email != loged.email) {
+      return true;
+    }
+  })
+  localStorage.setItem('cart', JSON.stringify(remainingItems));
   tableDiv.style.display = "none";
   outerDiv.append(h1);
 }
@@ -44,12 +52,17 @@ if (loged) {
         return true;
       }
     });
-    console.log(items);
+    
+    if (items.length == 0) {
+      tableDiv.style.display = "none";
+      outerDiv.append(h1);
+    }
 
     items.forEach((item) => {
       netTotalPrice += parseInt(item.total);
       displayItem(item);
     });
+
   } else {
     tableDiv.style.display = "none";
     outerDiv.append(h1);

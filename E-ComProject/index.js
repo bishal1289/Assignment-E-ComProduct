@@ -13,6 +13,7 @@ if (logedUser && logedUser.role != "Admin") {
 }
 
 function logout() {
+  ``;
   localStorage.removeItem("loged");
   window.location.href = "/E-ComProject/index.html";
 }
@@ -39,7 +40,7 @@ if (products) {
     for (let i = temp; i < n; i++) {
       temp++;
       if (i < products.length) showProduct(products[i]);
-      if (i === products.length - 1 ) {
+      if (i === products.length - 1) {
         more.style.display = "none";
       }
     }
@@ -48,7 +49,7 @@ if (products) {
   for (let i = 0; i < 5; i++) {
     n++;
     if (i < products.length) showProduct(products[i]);
-    if(products.length <= 5) more.style.display = "none";
+    if (products.length <= 5) more.style.display = "none";
   }
 
   function showProduct(obj) {
@@ -82,9 +83,11 @@ if (products) {
     cartBtn.addEventListener("click", () => {
       let cartProduct = JSON.parse(localStorage.getItem("cart"));
       let flag = true;
+      
+      //** check if the item is already present in cart then only increase the qty of that cart item **/
       if (cartProduct) {
         cartProduct.map((item) => {
-          if (item.id === obj.id) {
+          if (item.id === obj.id && item.email === logedUser.email) {
             console.log(item);
             console.log(obj);
             item.qty += 1;
@@ -109,7 +112,7 @@ if (products) {
       } else {
         window.location.href = "/E-ComProject/login.html";
       }
-      alert("Cart Item Added !!!");
+      //alert("Cart Item Added !!!");
     });
     nspan.innerHTML = obj.name;
     pspan.innerHTML = "RS :" + obj.price;
