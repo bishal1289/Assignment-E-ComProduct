@@ -13,7 +13,6 @@ if (logedUser && logedUser.role != "Admin") {
 }
 
 function logout() {
-  ``;
   localStorage.removeItem("loged");
   window.location.href = "/E-ComProject/index.html";
 }
@@ -83,7 +82,7 @@ if (products) {
     cartBtn.addEventListener("click", () => {
       let cartProduct = JSON.parse(localStorage.getItem("cart"));
       let flag = true;
-      
+
       //** check if the item is already present in cart then only increase the qty of that cart item **/
       if (cartProduct) {
         cartProduct.map((item) => {
